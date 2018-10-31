@@ -3,7 +3,9 @@ import InvitacionesView from '../../src/views/invitaciones/invitaciones.view';
 import CumpleañosView from '../../src/views/cumplea\u00F1os/cumplea\u00F1os.view';
 import Dashboard from '../../src/views/dashboard/dashboard.view'
 import { StyleSheet } from 'react-native'
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator, create } from 'react-navigation'
+import Login from '../views/login/login.view'
+import Registro from '../views/registro/registro.view';
 
 const headerStyles = StyleSheet.create({
   container: {
@@ -73,9 +75,26 @@ const CumpleañosStack = createStackNavigator(
   }
 )
 
+const LoginStack = createStackNavigator(
+  {
+    Login: {
+      screen: Login
+    },
+    Registro: {
+      screen: Registro
+    }
+  },
+  {
+    navigationOptions:{
+      header: null
+    }
+  }
+)
+
 export {
   DashboardStack,
   AnunciosStack,
   InvitacionesStack,
-  CumpleañosStack
+  CumpleañosStack,
+  LoginStack
 }

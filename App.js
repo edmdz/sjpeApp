@@ -4,7 +4,7 @@ import { createDrawerNavigator, createStackNavigator } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons';
 import { Font } from 'expo'
 import Login from './src/views/login/login.view'
-import { DashboardStack, AnunciosStack, InvitacionesStack, CumpleañosStack } from './src/routes/navigators'
+import { DashboardStack, AnunciosStack, InvitacionesStack, CumpleañosStack, LoginStack } from './src/routes/navigators'
 
 let MainStack = createDrawerNavigator({
   DashboardNavigator: {
@@ -36,6 +36,7 @@ export default class App extends React.Component {
   }
 
  async componentDidMount() {
+    await AsyncStorage.removeItem('email')
     Font.loadAsync({
       'MrGrieves': require('./assets/MrGrieves-Regular.otf'),
       'Oraqle': require('./assets/Oraqle-Script.otf'),
@@ -58,8 +59,8 @@ export default class App extends React.Component {
       <MainStack></MainStack>
     </View>
 
-    let loggin = <Login />
-    let content = this.state.isLogged ? app : loggin
+    let login = <LoginStack/>
+    let content = this.state.isLogged ? app : login
 
     return (
       < View style={{ flex: 1 }}>

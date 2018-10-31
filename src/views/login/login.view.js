@@ -27,7 +27,7 @@ class LoginView extends React.Component {
             placeholder='Correo electrónico'
             ref={this.getNameInputRef}
             value={this.state.email}
-            onChangeText = {(text) => {
+            onChangeText={(text) => {
               this.setState({
                 email: text
               })
@@ -42,36 +42,47 @@ class LoginView extends React.Component {
             placeholder='Contraseña'
             ref={this.getPasswordInpuRef}
             value={this.state.password}
-            onChangeText = {(text) => {
+            onChangeText={(text) => {
               this.setState({
                 password: text
               })
             }}
           ></TextInput>
         </View>
-        <View style={{ marginTop: 20 }}>
-          <Button
-            title='Iniciar Sesión'
-            onPress={async () => {
-              await firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password)
-              let user = firebaseAuth.currentUser
-              let name = user.displayName;
-              let email = user.email;
-              let photoUrl = user.photoURL;
-              let emailVerified = user.emailVerified;
-              let uid = user.uid
-              if(email)
-              await AsyncStorage.setItem('email',email);
-              if(photoUrl)
-              await AsyncStorage.setItem('photoUrl',photoUrl);
-              if(uid)
-              await AsyncStorage.setItem('uid',uid);
-              if(name)
-              await AsyncStorage.setItem('name',name);
-              if(emailVerified)
-              await AsyncStorage.setItem('emailVerified',emailVerified);
-            }}
-          />
+        <View style={{ marginTop: 20, width:290, flexDirection:'row', justifyContent:'space-between' }}>
+          <View style={{ flex: 0.45 }}>
+            <Button
+              title='Iniciar Sesión'
+              onPress={async () => {
+                let response = await firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password)
+                console.log(response)
+                let user = firebaseAuth.currentUser
+                if (user) {
+                  let name = user.displayName;
+                  let email = user.email;
+                  let photoUrl = user.photoURL;
+                  let emailVerified = user.emailVerified;
+                  let uid = user.uid
+                  if (email)
+                    await AsyncStorage.setItem('email', email);
+                  if (photoUrl)
+                    await AsyncStorage.setItem('photoUrl', photoUrl);
+                  if (uid)
+                    await AsyncStorage.setItem('uid', uid);
+                  if (name)
+                    await AsyncStorage.setItem('name', name);
+                  if (emailVerified)
+                    await AsyncStorage.setItem('emailVerified', emailVerified);
+                  this.props.onPress()
+                } else {
+                  alert('Error al iniciar sesion')
+                }
+              }}
+            />
+          </View>
+          <View style={{flex:0.45}}>
+            <Button title='Registrarse' onPress={() => { this.props.navigation.navigate('Registro') }} color='gray' />
+          </View>
         </View>
       </View>
     </View>)
@@ -93,7 +104,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white'
   },
   formContainer: {
     flex: 1,
