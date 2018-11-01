@@ -1,22 +1,40 @@
 import React from 'react'
-import { View, TextInput, Text, StyleSheet } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
+import AuthService from '../../services/auth.service'
 
 class Registro extends React.Component {
+  authService = new AuthService
+
   state = {
-    email: '',
-    phoneNumber: '',
-    password: '',
-    nickname: ''
+    email: 'roelmdza@gmail.com',
+    phoneNumber: '812116438',
+    password: 'ekizcosa97',
+    nickname: 'roelmdzaaa'
   }
 
+  _onPress = async () => {
+    let {email, phoneNumber, password, nickname} = this.state
+    let obj = {
+      email,
+      phoneNumber,
+      verified: 'false',
+      password,
+      displayName: nickname,
+      isEnable: 'true'
+    }
+
+    this.authService.signUp(obj).then(res => {console.log(res)}).catch(error => {console.log(error)})
+  }
+  
   render() {
     return <View style={styles.container}>
       <View style={styles.formContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>Profeta Elias</Text>
         </View>
-        <View>
+        <View style={styles.inputMargin}>
           <TextInput
+            keyboardType='email-address'
             style={inputStyles}
             underlineColorAndroid='rgba(0,0,0,0)'
             placeholder='Correo electrónico'
@@ -28,7 +46,7 @@ class Registro extends React.Component {
             }}
           ></TextInput>
         </View>
-        <View>
+        <View style={styles.inputMargin}>
           <TextInput
             style={inputStyles}
             underlineColorAndroid='rgba(0,0,0,0)'
@@ -41,8 +59,9 @@ class Registro extends React.Component {
             }}
           ></TextInput>
         </View>
-        <View>
+        <View style={styles.inputMargin}>
           <TextInput
+            keyboardType='numeric'
             style={inputStyles}
             underlineColorAndroid='rgba(0,0,0,0)'
             placeholder='Telefono'
@@ -54,7 +73,7 @@ class Registro extends React.Component {
             }}
           ></TextInput>
         </View>
-        <View>
+        <View style={styles.inputMargin}>
           <TextInput
             style={inputStyles}
             underlineColorAndroid='rgba(0,0,0,0)'
@@ -67,6 +86,12 @@ class Registro extends React.Component {
             }}
             secureTextEntry={true}
           ></TextInput>
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Registrarse"
+              onPress={this._onPress}
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -89,8 +114,14 @@ const styles = StyleSheet.create({
     fontSize: 55,
     fontFamily: 'Oraqle'
   },
-  textContainer:{
+  textContainer: {
     alignItems: 'center'
+  },
+  inputMargin: {
+    marginTop: 10
+  },
+  buttonContainer: {
+    marginTop: 20
   }
 })
 

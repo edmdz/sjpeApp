@@ -2,10 +2,11 @@ import AnunciosView from '../../src/views/anuncios/anuncios.view';
 import InvitacionesView from '../../src/views/invitaciones/invitaciones.view';
 import CumpleañosView from '../../src/views/cumplea\u00F1os/cumplea\u00F1os.view';
 import Dashboard from '../../src/views/dashboard/dashboard.view'
-import { StyleSheet } from 'react-native'
-import { createStackNavigator, create } from 'react-navigation'
+import { StyleSheet, View } from 'react-native'
+import { createDrawerNavigator, createStackNavigator } from 'react-navigation'
 import Login from '../views/login/login.view'
 import Registro from '../views/registro/registro.view';
+import React from 'react'
 
 const headerStyles = StyleSheet.create({
   container: {
@@ -85,16 +86,36 @@ const LoginStack = createStackNavigator(
     }
   },
   {
-    navigationOptions:{
+    navigationOptions: {
       header: null
     }
   }
 )
 
+let MainStack = createDrawerNavigator({
+  DashboardNavigator: {
+    screen: DashboardStack
+  },
+  AnunciosNavigator: {
+    screen: AnunciosStack
+  },
+  InvitacionesNavigator: {
+    screen: InvitacionesStack
+  },
+  CumpleañosNavigator: {
+    screen: CumpleañosStack
+  }
+}, {
+    drawerBackgroundColor: 'gray',
+    drawerWidth: 250,
+    contentOptions: {
+      labelStyle: {
+        color: 'white'
+      }
+    }
+  })
+
 export {
-  DashboardStack,
-  AnunciosStack,
-  InvitacionesStack,
-  CumpleañosStack,
+  MainStack,
   LoginStack
 }

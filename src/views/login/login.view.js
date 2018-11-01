@@ -73,7 +73,7 @@ class LoginView extends React.Component {
                     await AsyncStorage.setItem('name', name);
                   if (emailVerified)
                     await AsyncStorage.setItem('emailVerified', emailVerified);
-                  this.props.onPress()
+                  this.props.screenProps.setLogin()
                 } else {
                   alert('Error al iniciar sesion')
                 }
