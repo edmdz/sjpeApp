@@ -1,12 +1,23 @@
 import React from 'react'
-import { View, Text, StyleSheet, Button, TouchableOpacity, ScrollView, Image } from 'react-native'
+import { View, Text, StyleSheet, Button, TouchableOpacity, ScrollView, Image, AsyncStorage } from 'react-native'
 import Slider from './slider.view.js'
 import Icon from '../../../assets/logo_sjpe.png'
+import { Ionicons } from '@expo/vector-icons'
+const user = ''
+AsyncStorage.getItem('email').then(userRes => {
+  user = userRes
+})
+
 let DashboardHeader = ({ navigation }) => {
   return (<View style={headerStyles.container}>
     <View style={headerStyles.textContainer}>
       <Image source={Icon} style={{ width: 40, height: 40 }}></Image>
       <Text style={headerStyles.text}>Profeta Elias</Text>
+      <TouchableOpacity style={{position: 'relative', top:4,right: -65}} onPress={()=>{
+        navigation.navigate('Profile')
+      }}>
+        <Ionicons name='ios-person' size={32}></Ionicons>
+      </TouchableOpacity>
     </View>
   </View>)
 }

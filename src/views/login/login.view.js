@@ -56,18 +56,14 @@ class LoginView extends React.Component {
               onPress={async () => {
                 let response = await firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password)
                 let user = firebaseAuth.currentUser
-                console.log(user.stsTokenManager)
                 if (user) {
                   let name = user.displayName;
                   let email = user.email;
                   let photoUrl = user.photoURL;
                   let emailVerified = user.emailVerified;
-                  let accessToken = user.stsTokenManager.accessToken
                   let uid = user.uid
                   if (email)
                     await AsyncStorage.setItem('email', email);
-                  if(accessToken)
-                    await AsyncStorage.setItem('accessToken', accessToken);
                   if (photoUrl)
                     await AsyncStorage.setItem('photoUrl', photoUrl);
                   if (uid)

@@ -2,6 +2,7 @@ import AnunciosView from '../../src/views/anuncios/anuncios.view';
 import InvitacionesView from '../../src/views/invitaciones/invitaciones.view';
 import CumpleañosView from '../../src/views/cumplea\u00F1os/cumplea\u00F1os.view';
 import Dashboard from '../../src/views/dashboard/dashboard.view'
+import ProfileView from '../../src/views/profile/profile.view'
 import { StyleSheet, View } from 'react-native'
 import { createDrawerNavigator, createStackNavigator } from 'react-navigation'
 import Login from '../views/login/login.view'
@@ -104,6 +105,9 @@ let MainStack = createDrawerNavigator({
   },
   CumpleañosNavigator: {
     screen: CumpleañosStack
+  },
+  Profile: {
+    screen: ProfileView
   }
 }, {
     drawerBackgroundColor: 'gray',

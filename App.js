@@ -33,7 +33,13 @@ export default class App extends React.Component {
 
   render() {
     let app = <View style={styles.container}>
-      <MainStack></MainStack>
+      <MainStack screenProps={{
+        setLogOut: () => {
+          this.setState({
+            isLogged: false
+          })
+        }
+      }}></MainStack>
     </View>
 
     let login = <LoginStack screenProps={
