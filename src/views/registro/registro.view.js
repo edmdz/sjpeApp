@@ -7,7 +7,7 @@ class Registro extends React.Component {
 
   state = {
     email: 'roelmdza@gmail.com',
-    phoneNumber: '812116438',
+    phoneNumber: '+528121116438',
     password: 'ekizcosa97',
     nickname: 'roelmdzaaa'
   }
@@ -16,14 +16,14 @@ class Registro extends React.Component {
     let {email, phoneNumber, password, nickname} = this.state
     let obj = {
       email,
-      phoneNumber,
-      verified: 'false',
+      phone: phoneNumber,
+      verified: false,
       password,
-      displayName: nickname,
-      isEnable: 'true'
+      nickname,
+      disabled: false
     }
 
-    this.authService.signUp(obj).then(res => {console.log(res)}).catch(error => {console.log(error)})
+    this.authService.signUp(obj).then(res => res.json()).then(body => {console.log(body)})
   }
   
   render() {

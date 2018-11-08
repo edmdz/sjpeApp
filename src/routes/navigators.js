@@ -8,6 +8,7 @@ import { createDrawerNavigator, createStackNavigator } from 'react-navigation'
 import Login from '../views/login/login.view'
 import Registro from '../views/registro/registro.view';
 import React from 'react'
+import DrawerNavigationComponent from '../components/navigation-content.component'
 
 const headerStyles = StyleSheet.create({
   container: {
