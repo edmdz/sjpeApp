@@ -25,8 +25,9 @@ class CumpleañosView extends React.Component {
   }
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Text>Cumpleaos</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{height: 150, width: 100, borderWidth: 1}}>
+        </View>
       </View>
     )
   }

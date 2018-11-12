@@ -17,7 +17,8 @@ export default class App extends React.Component {
     Font.loadAsync({
       'MrGrieves': require('./assets/MrGrieves-Regular.otf'),
       'Oraqle': require('./assets/Oraqle-Script.otf'),
-      'Rustico': require('./assets/Rustico-Regular.otf')
+      'Rustico': require('./assets/Rustico-Regular.otf'),
+      'QuickSand-Regular': require('./assets/Quicksand-Regular.ttf')
     }).then(() => {
       this.setState({
         fontLoaded: true
