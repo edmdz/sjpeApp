@@ -54,7 +54,7 @@ class LoginView extends React.Component {
             <Button
               title='Iniciar Sesión'
               onPress={async () => {
-                let response = await firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password)
+                let response = await firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).catch( err => console.log(err))
                 let user = firebaseAuth.currentUser
                 if (user) {
                   let name = user.displayName;

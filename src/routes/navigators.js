@@ -1,4 +1,5 @@
 import AnunciosView from '../../src/views/anuncios/anuncios.view';
+import AnunciosDetail from '../../src/views/anuncios/anunciosDetail.view'
 import InvitacionesView from '../../src/views/invitaciones/invitaciones.view';
 import CumpleañosView from '../../src/views/cumplea\u00F1os/cumplea\u00F1os.view';
 import Dashboard from '../../src/views/dashboard/dashboard.view'
@@ -9,7 +10,7 @@ import Login from '../views/login/login.view'
 import Registro from '../views/registro/registro.view';
 import React from 'react'
 import DrawerNavigationComponent from '../components/navigation-content.component'
-
+import JovenMesView from '../../src/views/joven_mes/joven_mes.view'
 const headerStyles = StyleSheet.create({
   container: {
     flex: 0.09,
@@ -58,7 +59,13 @@ const AnunciosStack = createStackNavigator(
   {
     Anuncios: {
       screen: AnunciosView
+    },
+    AnunciosDetail: {
+      screen: AnunciosDetail
     }
+  },
+  {
+    mode: 'modal'
   }
 )
 
@@ -74,6 +81,14 @@ const CumpleañosStack = createStackNavigator(
   {
     Cumpleaños: {
       screen: CumpleañosView
+    }
+  }
+)
+
+const JovenMesStack = createStackNavigator(
+  {
+    JovenMes: {
+      screen: JovenMesView
     }
   }
 )
@@ -106,6 +121,9 @@ let MainStack = createDrawerNavigator({
   },
   CumpleañosNavigator: {
     screen: CumpleañosStack
+  },
+  JovenMesNavigator: {
+    screen: JovenMesStack
   },
   Profile: {
     screen: ProfileView

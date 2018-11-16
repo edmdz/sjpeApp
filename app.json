@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "sjpe_app",
-    "description": "This project is really great.",
+    "name": "SJPE",
+    "description": "Aplicacion informativa para sociedad juvenil",
     "slug": "sjpe_app",
     "privacy": "public",
     "sdkVersion": "30.0.0",
@@ -10,7 +10,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo_sjpe.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.roelmdz.sjpe"
+    },
+    "android": {
+      "package": "com.roelmdz.sjpe"
     },
     "androidStatusBar": {
       "backgroundColor": "#C2185B"

@@ -6,10 +6,10 @@ class Registro extends React.Component {
   authService = new AuthService
 
   state = {
-    email: 'roelmdza@gmail.com',
-    phoneNumber: '+528121116438',
-    password: 'ekizcosa97',
-    nickname: 'roelmdzaaa'
+    email: '',
+    phoneNumber: '+52',
+    password: '',
+    nickname: ''
   }
 
   _onPress = async () => {

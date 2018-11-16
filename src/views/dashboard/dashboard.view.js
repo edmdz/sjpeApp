@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, ScrollView, Image, As
 import Slider from './slider.view.js'
 import Icon from '../../../assets/logo_sjpe.png'
 import { Ionicons } from '@expo/vector-icons'
+import { LinearGradient } from 'expo'
+
 const user = ''
 AsyncStorage.getItem('email').then(userRes => {
   user = userRes
@@ -13,7 +15,7 @@ let DashboardHeader = ({ navigation }) => {
     <View style={headerStyles.textContainer}>
       <Image source={Icon} style={{ width: 40, height: 40 }}></Image>
       <Text style={headerStyles.text}>Profeta Elias</Text>
-      <TouchableOpacity style={{position: 'relative', top:4,right: -65}} onPress={()=>{
+      <TouchableOpacity style={{ position: 'relative', top: 4, right: -65 }} onPress={() => {
         navigation.navigate('Profile')
       }}>
         <Ionicons name='ios-person' size={32}></Ionicons>
@@ -48,27 +50,27 @@ class Dashboard extends React.Component {
           <View style={{ flex: 0.95, paddingTop: 10, paddingBottom: 10 }}>
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('AnunciosNavigator') }}>
               <View style={{ flex: 0.6, alignItems: 'center' }}>
-                <Card style={{ width: 345, height: 240 }} title='Avisos y anuncios'></Card>
+                <Card style={{ width: 345, height: 240 }} title='Avisos y anuncios' color="brown"></Card>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('InvitacionesNavigator') }}>
               <View style={{ flex: 0.6, alignItems: 'center', marginTop: 15 }}>
-                <Card style={{ width: 345, height: 240 }} title='Invitaciones'></Card>
+                <Card style={{ width: 345, height: 240 }} title='Invitaciones' color="darkblue"></Card>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('CumpleañosNavigator') }}>
               <View style={{ flex: 0.6, alignItems: 'center', marginTop: 15 }}>
-                <Card style={{ width: 345, height: 240 }} title='Cumpleaños'></Card>
+                <Card style={{ width: 345, height: 240 }} title='Cumpleaños' color="#407058"></Card>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => { this.props.navigation.navigate('JovenMesNavigator') }}>
+              <View style={{ flex: 0.6, alignItems: 'center', marginTop: 15 }}>
+                <Card style={{ width: 345, height: 240 }} title='Joven del Mes' color="gray"></Card>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => { this.props.navigation.navigate('AnunciosNavigator') }}>
               <View style={{ flex: 0.6, alignItems: 'center', marginTop: 15 }}>
-                <Card style={{ width: 345, height: 240 }} title='Joven del Mes'></Card>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => { this.props.navigation.navigate('AnunciosNavigator') }}>
-              <View style={{ flex: 0.6, alignItems: 'center', marginTop: 15 }}>
-                <Card style={{ width: 345, height: 240 }} title='Acuerdos'></Card>
+                <Card style={{ width: 345, height: 240 }} title='Acuerdos' color="darkred"></Card>
               </View>
             </TouchableOpacity>
           </View>
@@ -132,8 +134,19 @@ const Card = (props) => {
     alignItems: 'center'
   }
   return (<View style={Object.assign({}, styleObj, props.style)}>
-    <View style={{ flex: 0.15, width: '80%', borderBottomColor: 'black', borderBottomWidth: 0.20, justifyContent: 'center' }}>
-      <Text style={{ textAlign: 'center', fontSize: 15 }}>{props.title}</Text>
-    </View>
+    <LinearGradient
+      colors={['rgba(0,0,0,0.8)', props.color]}
+      style={{
+        flex: 1,
+        padding: 10,
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <View style={{ flex: 0.50, width: '80%', borderBottomColor: 'white', borderBottomWidth: 0.20, justifyContent: 'center' }}>
+        <Text style={{ textAlign: 'center', fontSize: 35, color: 'white' }}>{props.title}</Text>
+      </View>
+    </LinearGradient>
   </View>)
 }

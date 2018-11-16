@@ -4,6 +4,27 @@ import { Ionicons, MaterialCommunityIcons, FontAwesome, MaterialIcons } from '@e
 import { LinearGradient } from 'expo'
 import headerStyles from '../../../assets/headerStyles'
 
+
+const Anuncios = [
+  {
+    title: 'Noche Mexicana',
+    date: '16/9/18',
+    time: '17:00',
+    description: 'Paz de Dios Jovenes se les recuerda que el dia 16 de Septiembre se dara inicio a la noche Mexicana desde las 5 pm, estaremos preparando los alimentos y posteriormente la comida se servira alrededor de las 7 pm, esperamos contar con su presencia.'
+  },
+  {
+    title: 'Ensayo ExtraOrdinario',
+    date: '16/11/18',
+    time: '20:00',
+    description: 'Por motivo del clima se cancelara el ensayo del dia de mañana y convocamos a todos para reunirnos hoy a la hora indicada en el anuncio para ensayar los himnos que teniamos pendientes'
+  },
+  {
+    title: 'Ultimo dia cooperacion para el convivio',
+    date: '24/11/18',
+    time: '20:00',
+    description: 'A todos los Jovenes que no han entregado su cooperacion para el convivo de navidad se les recuerda que hoy es el ultimo dia para hacerlo, de lo contario no tendran su platillo para la posada navideña'
+  }
+]
 const AnunciosHeader = ({ navigation }) => {
   return (<View style={headerStyles.container}>
     <View style={headerStyles.buttonContainer}>
@@ -28,9 +49,23 @@ class AnunciosView extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', paddingTop: 10, paddingBottom: 10 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <AnunciosCard title='Noche Mexicana' onPress={() => alert('Clickado')}/>
-          <AnunciosCard title='Ensayo Extraordinario' onPress={() => alert('ClickadoS')} style={{ marginTop: 10 }} />
-          <AnunciosCard title='Cooperacion para el convivio' onPress={() => alert('ClickadoS2')} style={{ marginTop: 10 }} />
+          {Anuncios.map((element, index) => {
+            return <AnunciosCard 
+            title={element.title} 
+            date={element.date} 
+            time={element.time}
+            onPress={ () => {
+              this.props.navigation.navigate('AnunciosDetail', {
+                title: element.title,
+                date: element.date,
+                time: element.time,
+                description: element.description
+              })
+            }}
+            style={index!==0 ? {marginTop: 10}: {}}
+            key={index}
+            />
+          })}
         </ScrollView>
       </View>
     )
@@ -51,7 +86,7 @@ const AnunciosCardView = (props) => <View style={Object.assign({
     }}
   >
     <Text style={{ fontSize: 30, color: 'white' }}>{props.title}</Text>
-    <Text style={{ fontSize: 16, color: 'white' }}>Fecha: 16/10/18  Hora: 17:00</Text>
+    <Text style={{ fontSize: 16, color: 'white' }}>Fecha: {props.date}  Hora: {props.time}</Text>
   </LinearGradient>
 </View>
 
