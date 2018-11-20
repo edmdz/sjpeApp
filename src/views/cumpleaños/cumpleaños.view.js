@@ -74,7 +74,7 @@ const CumpleañosComponent = (props) => <View style={{ height: 160, width: '100%
   </View>
   <View style={{ height: 150, flex: 0.6, justifyContent: 'center', alignItems: 'center' }}>
     <Image source={person} style={{ height: 120, width: 120, borderRadius: 80 }}></Image>
-    <Text style={{ fontSize: 32, fontFamily: 'Oraqle', paddingTop: 5 }}>{props.name}</Text>
+    <Text style={{ fontSize: 24, fontFamily: 'QuickSand-Regular', paddingTop: 5 }}>{props.name}</Text>
   </View>
 </View>
 

@@ -44,7 +44,7 @@ class Dashboard extends React.Component {
 
       <View style={styles.container}>
         <View style={styles.lemaContainer}>
-          <Text style={styles.lemaText}>"Jheova es el Dios sirvamosle de corazón!"</Text>
+          <Text style={styles.lemaText}>"Jheova es el Dios sirvamosle de corazon!"</Text>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ flex: 0.95, paddingTop: 10, paddingBottom: 10 }}>

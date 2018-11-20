@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, AsyncStorage, Image, Button, StatusBar } from 'react-native'
 import personImage from '../../../assets/person.png'
 import logOut from '../../utils/logout'
-
+import { firebaseAuth } from '../../services/firebase.service'
 class ProfileView extends React.Component {
   state = {
     user: '',
@@ -39,7 +39,8 @@ class ProfileView extends React.Component {
           </View>
           <View style={{ flex: 0.6, justifyContent: 'flex-end' }}>
             <View style={{paddingBottom: 20}}>
-              <Button title='LogOut' onPress={() => {
+              <Button title='LogOut' onPress={async () => {
+                await firebaseAuth.signOut()
                 logOut(this.props.screenProps.setLogOut)
               }} color='#a1154d'></Button>
             </View>

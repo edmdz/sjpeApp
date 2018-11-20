@@ -13,7 +13,6 @@ export default class App extends React.Component {
   }
 
   async componentDidMount() {
-    await AsyncStorage.removeItem('email')
     Font.loadAsync({
       'MrGrieves': require('./assets/MrGrieves-Regular.otf'),
       'Oraqle': require('./assets/Oraqle-Script.otf'),

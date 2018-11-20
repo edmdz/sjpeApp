@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TextInput, Text, StyleSheet, Button } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Button, ActivityIndicator } from 'react-native'
 import AuthService from '../../services/auth.service'
 
 class Registro extends React.Component {
@@ -7,23 +7,37 @@ class Registro extends React.Component {
 
   state = {
     email: '',
-    phoneNumber: '+52',
+    phoneNumber: '',
     password: '',
-    nickname: ''
+    nickname: '',
+    isLoading: false
   }
 
   _onPress = async () => {
+    this.setState({
+      isLoading: true
+    })
     let {email, phoneNumber, password, nickname} = this.state
     let obj = {
       email,
-      phone: phoneNumber,
+      phone: `+52${phoneNumber}`,
       verified: false,
       password,
       nickname,
       disabled: false
     }
 
-    this.authService.signUp(obj).then(res => res.json()).then(body => {console.log(body)})
+    this.authService.signUp(obj).then(res => {
+      console.log('====>',res)
+      res.json()
+    }).then(body => {
+      console.log(body)
+      this.setState({
+        isLoading: false
+      })
+      alert('Registrado Correctamente')
+      this.props.navigation.navigate('Login')
+    }).catch(err => console.log(err))
   }
   
   render() {
@@ -87,10 +101,10 @@ class Registro extends React.Component {
             secureTextEntry={true}
           ></TextInput>
           <View style={styles.buttonContainer}>
-            <Button
+            {this.state.isLoading ? <ActivityIndicator size='large'/>: <Button
               title="Registrarse"
               onPress={this._onPress}
-            />
+            />}
           </View>
         </View>
       </View>
